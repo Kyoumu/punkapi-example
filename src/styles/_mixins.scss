@@ -1,0 +1,15 @@
+@mixin clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+@function em($pixels, $context: $default-font-size) {
+    @return #{strip-units($pixels) / strip-units($context)}em;
+}

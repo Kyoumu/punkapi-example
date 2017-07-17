@@ -1,0 +1,67 @@
+.beer {
+    &__items {
+        font-size: 0;
+    }
+
+    &__item-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+        width: 20%;
+        padding: 10px;
+    }
+
+    &__item {
+        background-color: white;
+        transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        padding-top: 10px;
+        font-size: $default-font-size;
+
+        &:hover {
+            background-color: rgba(210, 210, 210, 0.2);
+        }
+    }
+
+    &__image-wrapper {
+        height: 150px;
+    }
+
+    &__image {
+        margin: 0 auto;
+        max-height: 100%;
+    }
+
+    &__title-wrapper {
+        height: 80px;
+    }
+
+    &__title {
+        margin: 15px 10px 5px 10px;
+        font-size: em(18);
+        text-align: center;
+    }
+
+    &__info {
+        margin: 5px 10px;
+        font-size: em(12);
+        color: #ccc;
+        text-align: center;
+    }
+
+    &__tagline {
+        margin: 5px 10px;
+        height: 50px;
+        font-size: em(13);
+        overflow: hidden;
+    }
+
+    &__error {
+        padding: 20px;
+        color: #ede9dd;
+        background: #fb9a93;
+        border: 1px solid #e91133;
+        border-radius: 5px;
+    }
+}
