@@ -1,0 +1,31 @@
+.beer-filter {
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+    background-color: #a6b7c6;
+    height: 56px;
+    @include clearfix();
+
+    &__items-per-page {
+        float: right;
+        width: 100px;
+    }
+
+    &__abv {
+        float: left;
+        margin-top: 7px;
+    }
+
+    &__abv-input {
+        display: inline-block;
+        vertical-align: middle;
+        width: 40px;
+    }
+
+    &__abv-range {
+        display: inline-block;
+        vertical-align: middle;
+        width: 300px;
+        margin: 0 15px;
+    }
+}
