@@ -4,14 +4,14 @@ import Loader from './common/Loader';
 
 export default class BeerList extends Component {
     componentDidMount() {
-        this.props.fetchBeer();
+        this.props.fetchBeer(this.props.history);
     }
 
     render() {
         const beerList = Object.values(this.props.beerList);
 
         return <div className="beer">
-            {this.props.isLoading && <Loader className="beer__loader"/>}
+            {this.props.isLoading && <Loader/>}
             {this.props.error && <div className="beer__error">{this.props.error}</div>}
             {beerList.length === 0 && <div className="beer__empty">Результаты по данному запросу отсутствуют.</div>}
 

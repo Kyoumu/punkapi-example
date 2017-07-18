@@ -8,6 +8,14 @@
     top: 0;
     @include clearfix();
 
+    &__title {
+        display: inline-block;
+        padding: 1px 4px;
+        font-size: em(12);
+        color: #243547;
+        background-color: #ece9e9;
+    }
+
     &__divider {
         width: 1px;
         height: 100%;
@@ -27,16 +35,10 @@
             width: 100%;
         }
 
-        &-title {
-            display: inline-block;
-            padding: 1px 10px;
-            font-size: em(12);
-            color: #243547;
-            background-color: #ece9e9;
-        }
-
         &-input {
             width: 200px;
+            padding-left: 2px;
+            padding-right: 2px;
         }
     }
 
@@ -49,18 +51,35 @@
             text-align: center;
         }
 
-        &-title {
+        &-input-wrapper {
+            position: relative;
             display: inline-block;
-            padding: 1px 10px;
-            font-size: em(12);
-            color: #243547;
-            background-color: #ece9e9;
+            vertical-align: middle;
+
+            &:before {
+                position: absolute;
+                display: inline-block;
+                left: 5px;
+                top: 1px;
+            }
+
+            &_left {
+                &:before {
+                    content: '% >';
+                }
+            }
+
+            &_right {
+                &:before {
+                    content: '% <';
+                }
+            }
         }
 
         &-input {
-            display: inline-block;
-            vertical-align: middle;
-            width: 40px;
+            box-sizing: border-box;
+            width: 80px;
+            padding-left: 30px;
         }
 
         &-range {

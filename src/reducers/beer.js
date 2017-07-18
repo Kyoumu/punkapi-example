@@ -1,10 +1,11 @@
-import { FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE } from './../constants/actions';
-import { PAGES_MODE_REPLACE, PAGES_MODE_APPEND } from './../constants';
+import { FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, SET_FETCH_BEER_TIMER, CLEAR_FETCH_BEER_TIMER } from './../constants/actions';
+import { PAGES_MODE_REPLACE } from './../constants';
 
 const initialState = {
     isLoading: false,
     list: {},
-    error: false
+    error: false,
+    fetchTimer: null
 };
 
 export default (state = initialState, action) => {
@@ -19,6 +20,14 @@ export default (state = initialState, action) => {
             return {...state, list, isLoading: false, error: false};
         case FETCH_BEER_FAILURE:
             return {...state, isLoading: false, error: action.error};
+        case SET_FETCH_BEER_TIMER:
+            if (state.fetchTimer) {
+                clearTimeout(state.fetchTimer);
+            }
+
+            return {...state, fetchTimer: action.payload};
+        case CLEAR_FETCH_BEER_TIMER:
+            return {...state, fetchTimer: null};
         default:
             return state;
     }
