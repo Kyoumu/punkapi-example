@@ -1,10 +1,28 @@
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    30% {
+        transform: rotate(360deg);
+    }
+
+    70% {
+        transform: rotate(1440deg);
+    }
+
+    to {
+        transform: rotate(1800deg);
+    }
+}
+
 .loader {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(210, 210, 210, 0.3);
 
     &__image {
         position: absolute;
@@ -14,6 +32,14 @@
         height: 64px;
         margin-left: -32px;
         margin-top: -32px;
-        background-image: url(../images/loader.gif);
+        background-image: url(../images/loader.png);
+
+        animation-name: spin;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        animation-delay: 0s;
     }
 }

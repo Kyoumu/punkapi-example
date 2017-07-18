@@ -1,31 +1,79 @@
 .beer-filter {
     box-sizing: border-box;
-    margin: 10px;
+    position: fixed;
+    width: 100%;
     padding: 10px;
-    background-color: #a6b7c6;
-    height: 56px;
+    background-color: #3f6f95;
+    height: 62px;
+    top: 0;
     @include clearfix();
 
-    &__items-per-page {
-        float: right;
-        width: 100px;
+    &__divider {
+        width: 1px;
+        height: 100%;
+        background-color: #ece9e9;
+        margin: 0 25px;
+
+        &_left {
+            float: left;
+        }
+    }
+
+    &__name {
+        float: left;
+
+        &-title-wrapper {
+            display: block;
+            width: 100%;
+        }
+
+        &-title {
+            display: inline-block;
+            padding: 1px 10px;
+            font-size: em(12);
+            color: #243547;
+            background-color: #ece9e9;
+        }
+
+        &-input {
+            width: 200px;
+        }
     }
 
     &__abv {
         float: left;
-        margin-top: 7px;
+
+        &-title-wrapper {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        &-title {
+            display: inline-block;
+            padding: 1px 10px;
+            font-size: em(12);
+            color: #243547;
+            background-color: #ece9e9;
+        }
+
+        &-input {
+            display: inline-block;
+            vertical-align: middle;
+            width: 40px;
+        }
+
+        &-range {
+            display: inline-block;
+            vertical-align: middle;
+            width: 300px;
+            margin: 0 15px;
+        }
     }
 
-    &__abv-input {
-        display: inline-block;
-        vertical-align: middle;
-        width: 40px;
-    }
-
-    &__abv-range {
-        display: inline-block;
-        vertical-align: middle;
-        width: 300px;
-        margin: 0 15px;
+    &__items-per-page {
+        float: right;
+        width: 100px;
+        margin: 3px 0;
     }
 }

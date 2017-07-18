@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import BeerFilter from './../components/BeerFilter';
-import { setItemPerPage, setMinABV, setMaxABV } from './../actions/filter';
+import { setItemPerPage, setABV, setBeerName } from './../actions/filter';
 
 const mapStateToProps = (state) => ({
     itemsPerPage: state.filter.itemsPerPage,
     minABV: state.filter.minABV,
-    maxABV: state.filter.maxABV
+    maxABV: state.filter.maxABV,
+    beerName: state.filter.beerName
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -13,14 +14,16 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(setItemPerPage(selected.value));
     },
     changeABV: ([min, max]) => {
-        dispatch(setMinABV(min));
-        dispatch(setMaxABV(max));
+        dispatch(setABV({min, max}));
     },
     changeMinABV: (e) => {
-        dispatch(setMinABV(e.target.value));
+        dispatch(setABV({min: e.target.value}));
     },
     changeMaxABV: (e) => {
-        dispatch(setMaxABV(e.target.value));
+        dispatch(setABV({max: e.target.value}));
+    },
+    setBeerName: (e) => {
+        dispatch(setBeerName(e.target.value));
     }
 });
 

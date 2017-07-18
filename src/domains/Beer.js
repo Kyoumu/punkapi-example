@@ -34,7 +34,7 @@ export default class Beer {
     }
 
     getFormattedABV() {
-        return (Math.round(this.abv*10) / 100) + '%';
+        return (Math.round(this.abv*100) / 100) + '%';
     }
 
     getFormatedVolume() {

@@ -13,7 +13,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './www/build'),
         filename: '[name].js',
-        publicPath: '/'
+        publicPath: '/build/'
     },
     module: {
         rules: [
@@ -99,6 +99,7 @@ module.exports = {
         compress: true,
         port: 9000,
         publicPath: '/build/',
-        hot: true
+        hot: true,
+        historyApiFallback: true
     }
 };

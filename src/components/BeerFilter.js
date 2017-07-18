@@ -12,8 +12,22 @@ export default class BeerFilter extends Component {
 
     render() {
         return <div className="beer-filter">
+            <div className="beer-filter__name">
+                <label htmlFor="filter-beer-name" className="beer-filter__name-title-wrapper">
+                    <div className="beer-filter__name-title">Название</div>
+                </label>
+
+                <input type="text" id="filter-beer-name" className="beer-filter__name-input" placeholder="The End Of History" value={this.props.beerName} onChange={this.props.setBeerName}/>
+            </div>
+
+            <div className="beer-filter__divider beer-filter__divider_left"></div>
+
             <div className="beer-filter__abv">
-                <input type="number" className="beer-filter__abv-input" placeholder={MIN_ABV} value={this.props.minABV} onChange={this.props.changeMinABV}/>
+                <label htmlFor="filter-abv" className="beer-filter__abv-title-wrapper">
+                    <div className="beer-filter__abv-title">Крепость, %</div>
+                </label>
+
+                <input type="number" id="filter-abv" className="beer-filter__abv-input" placeholder={MIN_ABV} value={this.props.minABV} onChange={this.props.changeMinABV}/>
 
                 <Slider.Range
                     className="beer-filter__abv-range"

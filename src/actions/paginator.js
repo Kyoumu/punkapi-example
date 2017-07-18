@@ -8,7 +8,7 @@ export const goToNextPage = () => {
 
         dispatch(setPage(state.paginator.page + 1));
         dispatch(requestFetchBeer(PAGES_MODE_APPEND));
-    }
+    };
 };
 
 export const setPage = (page) => ({type: SET_PAGE, payload: page});

@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import createHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import rootReducer from './../reducers';
 import Home from './screens/Home';
+import Beer from './screens/Beer';
 
 
 const history = createHistory();
@@ -19,7 +20,12 @@ export default class App extends Component {
         return <Provider store={store}>
             <ConnectedRouter history={history}>
                 <div>
-                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/" render={() => <Redirect to="/beer"/>}/>
+
+                    <Switch>
+                        <Route exact path="/beer" component={Home}/>
+                        <Route path="/beer/:id" component={Beer}/>
+                    </Switch>
                 </div>
             </ConnectedRouter>
         </Provider>;
