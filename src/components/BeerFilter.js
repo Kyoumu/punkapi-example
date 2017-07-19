@@ -34,7 +34,7 @@ export default class BeerFilter extends Component {
         return <div className="beer-filter">
             <div className="beer-filter__name">
                 <label htmlFor="filter-beer-name" className="beer-filter__name-title-wrapper">
-                    <div className="beer-filter__title">Название</div>
+                    <div className="beer-filter__title">Name</div>
                 </label>
 
                 <input type="text" id="filter-beer-name" className="beer-filter__name-input" placeholder="The End Of History" value={this.props.beerName} onChange={this.setBeerName}/>
@@ -44,7 +44,7 @@ export default class BeerFilter extends Component {
 
             <div className="beer-filter__abv">
                 <label htmlFor="filter-abv" className="beer-filter__abv-title-wrapper">
-                    <div className="beer-filter__title">Крепость, %</div>
+                    <div className="beer-filter__title">ABV</div>
                 </label>
 
                 <div className="beer-filter__abv-input-wrapper beer-filter__abv-input-wrapper_left">

@@ -40,10 +40,10 @@ export default class Beer {
     getFormatedVolume() {
         if (this.volume) {
             if (this.volume.unit === 'liters') {
-                return (Math.round(this.volume.value) / 100) + ' л';
+                return Math.round(this.volume.value) + 'l';
             }
         }
 
-        return '';
+        return '?';
     }
 }

@@ -1,0 +1,31 @@
+.beer-item {
+    padding: 20px;
+
+    &__nav-button {
+        margin-bottom: 20px;
+    }
+
+    &__image {
+        max-height: 450px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-size: 2.4em;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    &__tagline {
+        font-style: italic;
+        color: $nepal;
+    }
+
+    &__description {
+        margin-top: 30px;
+    }
+
+    .beer-item__list {
+        margin: 15px 0;
+    }
+}

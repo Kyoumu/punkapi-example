@@ -1,0 +1,64 @@
+.list {
+    margin: 10px 0;
+
+    &__title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    //ul
+    &__items {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    //li
+    &__item {
+        margin: 5px 0 5px 15px;
+        padding: 0;
+
+        &:before {
+            display: inline;
+            content: '\2014';
+            margin-right: 5px;
+        }
+    }
+}
+
+.list-kv {
+    margin: 10px 0;
+
+    &__items {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    &__item {
+        margin-bottom: 5px;
+    }
+
+    &__key, &__value {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__key {
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:after {
+            margin-left: 3px;
+            display: inline;
+            position: relative;
+            top: 3px;
+            content: ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ';
+        }
+    }
+
+    &__value {
+        margin-left: 3px;
+    }
+}

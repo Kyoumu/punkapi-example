@@ -2,15 +2,52 @@
     box-sizing: border-box;
 }
 
+html, body, #root, .routers-wrapper, .component-wrapper {
+    height: 100%;
+}
+
 body {
     font-family: $main-font;
     font-size: $default-font-size;
     line-height: $default-line-height;
-    color: $default-font-color;
+    color: $chambray;
+    background-color: $desert-storm;
 }
 
 img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+input, textarea {
+    padding: 2px;
+    color: $chambray;
+    background-color: $white;
+    border: 1px solid $desert-storm;
+}
+
+a {
+    text-decoration: underline;
+
+    &:link, &:visited, &:hover, &:focus, &:active {
+        color: $chambray;
+    }
+    &:hover, &:focus, &:active {
+        text-decoration: none;
+    }
+
+    &.link-opposite {
+        &:link, &:visited, &:hover, &:focus, &:active {
+            color: $white;
+        }
+    }
+}
+
+.page-wrapper {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto #{-$footer-height};
+    padding: 0 0 $footer-height;
+    @include clearfix;
 }

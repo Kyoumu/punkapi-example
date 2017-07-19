@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import BeerList from './../components/BeerList';
-import { requestFetchBeer } from './../actions/beer';
 
 const mapStateToProps = (state, ownProps) => ({
     ...ownProps,
-    isLoading: state.beer.isLoading,
-    beerList: state.beer.list,
-    error: state.beer.error
+    isLoading: state.beer.isLoadingList,
+    beerList: state.beer.currentList,
+    error: state.beer.listError
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchBeer: (history) => {
-        dispatch(requestFetchBeer(history));
+    onBeerClick: (beer, history) => {
+        history.push('/beer/' + beer.id, {fromList: true});
     }
 });
 

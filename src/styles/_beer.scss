@@ -9,6 +9,7 @@
 
     &__items {
         font-size: 0;
+        padding: 0 10px;
     }
 
     &__item-wrapper {
@@ -21,14 +22,17 @@
 
     &__item {
         background-color: white;
-        transition: background-color 0.2s ease-in-out;
+        transition: border-color 0.2s ease-in-out;
         cursor: pointer;
         border: 1px solid #ccc;
         padding-top: 10px;
         font-size: $default-font-size;
 
         &:hover {
-            background-color: rgba(210, 210, 210, 0.2);
+            border-color: $chambray;
+            .beer__image {
+                transform: rotate(30deg);
+            }
         }
     }
 
@@ -37,6 +41,7 @@
     }
 
     &__image {
+        transition: transform 0.2s ease-in-out;
         margin: 0 auto;
         max-height: 100%;
     }
@@ -55,7 +60,7 @@
     &__info {
         margin: 5px 10px;
         font-size: em(12);
-        color: #ccc;
+        color: $nepal;
         text-align: center;
     }
 
@@ -68,12 +73,7 @@
         text-align: center;
     }
 
-    &__error {
-        padding: 20px;
-        color: #fff;
-        background: #fb9a93;
-        border: 1px solid #e91133;
-        border-radius: 5px;
-        margin: 0 10px;
+    .beer__error {
+        margin: 0 20px;
     }
 }

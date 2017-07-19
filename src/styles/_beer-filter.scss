@@ -2,24 +2,25 @@
     box-sizing: border-box;
     position: fixed;
     width: 100%;
-    padding: 10px;
-    background-color: #3f6f95;
+    padding: 5px 20px;
+    background-color: #2f5c8c;
     height: 62px;
     top: 0;
-    @include clearfix();
+    z-index: 100;
+    @include clearfix;
 
     &__title {
         display: inline-block;
         padding: 1px 4px;
-        font-size: em(12);
-        color: #243547;
-        background-color: #ece9e9;
+        font-size: 0.85em;
+        font-weight: bold;
+        color: $white;
     }
 
     &__divider {
         width: 1px;
         height: 100%;
-        background-color: #ece9e9;
+        background-color: $desert-storm;
         margin: 0 25px;
 
         &_left {
@@ -37,8 +38,6 @@
 
         &-input {
             width: 200px;
-            padding-left: 2px;
-            padding-right: 2px;
         }
     }
 
@@ -68,7 +67,6 @@
                     content: '% >';
                 }
             }
-
             &_right {
                 &:before {
                     content: '% <';
@@ -92,7 +90,7 @@
 
     &__items-per-page {
         float: right;
-        width: 100px;
-        margin: 3px 0;
+        width: 80px;
+        margin: 8px 0;
     }
 }

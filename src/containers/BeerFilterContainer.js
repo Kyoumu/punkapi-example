@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { setQueryParams, extractQueryParams } from './../services/query-params';
-import BeerFilter from './../components/BeerFilter';
 import { requestFetchBeer, requestFetchBeerWithDelay } from './../actions/beer';
 import { setPage } from './../actions/pagination';
+import BeerFilter from './../components/BeerFilter';
 
 const mapStateToProps = (state, ownProps) => {
     const queryParams = extractQueryParams(ownProps.history.location.search);
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
     setItemPerPage: (count, history) => {
         setQueryParams({per_page: count}, history);
         dispatch(setPage(1));
-        dispatch(requestFetchBeer(history));
+        dispatch(requestFetchBeer(history.location.search));
     },
     changeABV: ({gt, lt}, history) => {
         const queryParams = extractQueryParams(history.location.search);
@@ -34,12 +34,12 @@ const mapDispatchToProps = (dispatch) => ({
         }
 
         if (typeof gt !== 'undefined' || typeof lt !== 'undefined') {
-            dispatch(requestFetchBeerWithDelay(history));
+            dispatch(requestFetchBeerWithDelay(history.location.search));
         }
     },
     setBeerName: (beer_name, history) => {
         setQueryParams({beer_name}, history);
-        dispatch(requestFetchBeerWithDelay(history));
+        dispatch(requestFetchBeerWithDelay(history.location.search));
     }
 });
 

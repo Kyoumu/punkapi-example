@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import BeerItem from './BeerItem';
+import BeerListItem from './BeerListItem';
 import Loader from './common/Loader';
 
 export default class BeerList extends Component {
-    componentDidMount() {
-        this.props.fetchBeer(this.props.history);
-    }
+    onBeerClick = (beer) => {
+        this.props.onBeerClick(beer, this.props.history);
+    };
 
     render() {
         const beerList = Object.values(this.props.beerList);
 
         return <div className="beer">
             {this.props.isLoading && <Loader/>}
-            {this.props.error && <div className="beer__error">{this.props.error}</div>}
-            {beerList.length === 0 && <div className="beer__empty">Результаты по данному запросу отсутствуют.</div>}
+            {this.props.error && <div className="alert alert_danger beer__error">{this.props.error}</div>}
+            {(beerList.length === 0 && !this.props.error) && <div className="beer__empty">Результаты по данному запросу отсутствуют.</div>}
 
             <div className="beer__items">
                 {beerList.map((beer) => {
-                    return <BeerItem key={beer.id} beer={beer}/>
+                    return <BeerListItem key={beer.id} beer={beer} onClick={this.onBeerClick}/>
                 })}
             </div>
         </div>;

@@ -28,11 +28,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 64px;
-        height: 64px;
-        margin-left: -32px;
-        margin-top: -32px;
-        background-image: url(../images/loader.png);
+        margin-left: -($loader-width/2);
+        margin-top: -($loader-height/2);
+        @include sprite($loader);
 
         animation-name: spin;
         animation-duration: 5s;

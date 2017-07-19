@@ -1,0 +1,30 @@
+.footer {
+    box-sizing: border-box;
+    height: $footer-height;
+    padding: 10px 20px;
+    background-color: $chambray;
+    color: $white;
+
+    &__github {
+        display: inline-block;
+        vertical-align: middle;
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+            opacity: 0.75;
+        }
+
+        &-logo, &-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        &-logo {
+            margin-right: 8px;
+            @include sprite($github-light);
+        }
+
+        &-text {
+            color: $white;
+        }
+    }
+}
