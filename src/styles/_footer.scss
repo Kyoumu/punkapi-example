@@ -1,9 +1,10 @@
 .footer {
     box-sizing: border-box;
     height: $footer-height;
-    padding: 10px 20px;
+    padding: 10px 5px;
     background-color: $chambray;
     color: $white;
+    text-align: center;
 
     &__github {
         display: inline-block;
@@ -26,5 +27,14 @@
         &-text {
             color: $white;
         }
+    }
+
+    @media (min-width: $screen-480-min) {
+        padding: 10px;
+        text-align: left;
+    }
+
+    @media (min-width: $screen-sm-min) {
+        padding: 10px 20px;
     }
 }

@@ -18,11 +18,12 @@
     &__item {
         margin: 5px 0 5px 15px;
         padding: 0;
+        max-width: $max-readable-text-width;
 
         &:before {
             display: inline;
             content: '\2014';
-            margin-right: 5px;
+            margin-right: 8px;
         }
     }
 }
@@ -45,7 +46,7 @@
     }
 
     &__key {
-        width: 200px;
+        width: 240px;
         overflow: hidden;
         white-space: nowrap;
 

@@ -41,14 +41,14 @@ export const setQueryParams = (newQueryParams, history, options = {}) => {
         queryParams[key] = newQueryParams[key];
     }
 
-    if (options.removeEmpty) {
-        queryParams = removeEmptyParams(queryParams);
-    }
-
     if (options.filter) {
         for (let key in queryParams) {
             queryParams[key] = filterQueryParam(key, queryParams[key], queryParams);
         }
+    }
+
+    if (options.removeEmpty) {
+        queryParams = removeEmptyParams(queryParams);
     }
 
     history[options.mode]({

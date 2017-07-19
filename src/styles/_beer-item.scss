@@ -1,31 +1,68 @@
 .beer-item {
-    padding: 20px;
+    padding: 5px 5px 15px;
 
     &__nav-button {
-        margin-bottom: 20px;
+        margin: 5px 5px 20px;
+    }
+
+    &__content {
+        display: inline-block;
+
+        &-wrapper {
+            text-align: center;
+        }
     }
 
     &__image {
-        max-height: 450px;
-        margin: 0 auto;
+        max-height: 300px;
+        margin: 0 auto 20px;
     }
 
     &__title {
-        font-size: 2.4em;
+        font-size: 1.5em;
         font-weight: bold;
         line-height: 1.2;
+        max-width: $max-readable-text-width;
+        text-align: left;
     }
 
     &__tagline {
         font-style: italic;
         color: $nepal;
+        margin-top: 5px;
+        max-width: $max-readable-text-width;
+        text-align: left;
     }
 
     &__description {
-        margin-top: 30px;
+        margin-top: 15px;
+        max-width: $max-readable-text-width;
+        text-align: left;
     }
 
     .beer-item__list {
         margin: 15px 0;
+        text-align: left;
+    }
+
+    @media (min-width: $screen-sm-min) {
+        padding: 15px 15px 45px;
+
+        &__content {
+            padding-left: 20px;
+        }
+
+        &__image {
+            max-height: 450px;
+            margin: 0 auto;
+        }
+
+        &__title {
+            font-size: 2.4em;
+        }
+
+        &__description {
+            margin-top: 30px;
+        }
     }
 }

@@ -2,6 +2,11 @@
     padding: 20px;
     border-radius: 5px;
     margin: 10px 0;
+    max-width: $max-readable-text-width;
+
+    &_center {
+        margin: 0 auto;
+    }
 
     &_danger {
         color: $white;

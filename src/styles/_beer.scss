@@ -1,5 +1,5 @@
 .beer {
-    margin-top: 72px;
+    @include clearfix;
 
     &__empty {
         text-align: center;
@@ -9,19 +9,20 @@
 
     &__items {
         font-size: 0;
-        padding: 0 10px;
+        margin: 5px 0;
     }
 
     &__item-wrapper {
         display: inline-block;
         vertical-align: top;
         box-sizing: border-box;
-        width: 16.666666666666668%;
-        padding: 10px;
+        padding: 5px;
+        width: 100%;
     }
 
     &__item {
         background-color: white;
+        border-radius: 5px;
         transition: border-color 0.2s ease-in-out;
         cursor: pointer;
         border: 1px solid #ccc;
@@ -47,7 +48,7 @@
     }
 
     &__title-wrapper {
-        height: 95px;
+        min-height: 95px;
     }
 
     &__title {
@@ -66,7 +67,7 @@
 
     &__tagline {
         margin: 5px 10px;
-        height: 50px;
+        min-height: 50px;
         font-size: em(13);
         overflow: hidden;
         font-style: italic;
@@ -74,6 +75,45 @@
     }
 
     .beer__error {
-        margin: 0 20px;
+        margin: 10px 5px;
+    }
+
+    @media (min-width: $screen-480-min) {
+        &__items {
+            margin: 5px;
+        }
+
+        &__item-wrapper {
+            width: 50%;
+        }
+    }
+
+    @media (min-width: $screen-sm-min) {
+        margin-top: $header-sticked-height;
+
+        &__items {
+            margin: 10px;
+        }
+
+        &__item-wrapper {
+            width: 33.3333333333%;
+            padding: 10px;
+        }
+
+        .beer__error {
+            margin: 20px;
+        }
+    }
+
+    @media (min-width: $screen-md-min) {
+        &__item-wrapper {
+            width: 25%;
+        }
+    }
+
+    @media (min-width: $screen-1600-min) {
+        &__item-wrapper {
+            width: 16.666666666666668%;
+        }
     }
 }

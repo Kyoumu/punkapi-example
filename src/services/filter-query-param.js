@@ -6,10 +6,14 @@ const filters = {
     },
     abv_gt: (value, prevParams) => {
         const lt = (typeof prevParams.abv_lt !== 'undefined') ? Math.min(prevParams.abv_lt * 1, MAX_ABV) : MAX_ABV;
+        value = value || MIN_ABV;
+
         return Math.min(Math.max(value * 1, MIN_ABV), lt);
     },
     abv_lt: (value, prevParams) => {
         const gt = (typeof prevParams.abv_gt !== 'undefined') ? Math.max(prevParams.abv_gt * 1, MIN_ABV) : MIN_ABV;
+        value = value || MAX_ABV;
+
         return Math.max(Math.min(value * 1, MAX_ABV), gt);
     },
     beer_name: (value) => {

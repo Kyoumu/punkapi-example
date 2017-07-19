@@ -10,32 +10,32 @@
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
 $github-light-name: 'github-light';
-$github-light-x: 64px;
+$github-light-x: 100px;
 $github-light-y: 0px;
-$github-light-offset-x: -64px;
+$github-light-offset-x: -100px;
 $github-light-offset-y: 0px;
 $github-light-width: 32px;
 $github-light-height: 32px;
-$github-light-total-width: 96px;
-$github-light-total-height: 64px;
+$github-light-total-width: 132px;
+$github-light-total-height: 100px;
 $github-light-image: '~sprite.png';
-$github-light: (64px, 0px, -64px, 0px, 32px, 32px, 96px, 64px, '~sprite.png', 'github-light', );
+$github-light: (100px, 0px, -100px, 0px, 32px, 32px, 132px, 100px, '~sprite.png', 'github-light', );
 $loader-name: 'loader';
 $loader-x: 0px;
 $loader-y: 0px;
 $loader-offset-x: 0px;
 $loader-offset-y: 0px;
-$loader-width: 64px;
-$loader-height: 64px;
-$loader-total-width: 96px;
-$loader-total-height: 64px;
+$loader-width: 100px;
+$loader-height: 100px;
+$loader-total-width: 132px;
+$loader-total-height: 100px;
 $loader-image: '~sprite.png';
-$loader: (0px, 0px, 0px, 0px, 64px, 64px, 96px, 64px, '~sprite.png', 'loader', );
-$spritesheet-width: 96px;
-$spritesheet-height: 64px;
+$loader: (0px, 0px, 0px, 0px, 100px, 100px, 132px, 100px, '~sprite.png', 'loader', );
+$spritesheet-width: 132px;
+$spritesheet-height: 100px;
 $spritesheet-image: '~sprite.png';
 $spritesheet-sprites: ($github-light, $loader, );
-$spritesheet: (96px, 64px, '~sprite.png', $spritesheet-sprites, );
+$spritesheet: (132px, 100px, '~sprite.png', $spritesheet-sprites, );
 
 // The provided mixins are intended to be used with the array-like variables
 //

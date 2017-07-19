@@ -36,6 +36,9 @@
 .visible-xs-block,
 .visible-xs-inline,
 .visible-xs-inline-block,
+.visible-480-block,
+.visible-480-inline,
+.visible-480-inline-block,
 .visible-sm-block,
 .visible-sm-inline,
 .visible-sm-inline-block,
@@ -44,7 +47,10 @@
 .visible-md-inline-block,
 .visible-lg-block,
 .visible-lg-inline,
-.visible-lg-inline-block {
+.visible-lg-inline-block,
+.visible-1600-block,
+.visible-1600-inline,
+.visible-1600-inline-block {
   display: none !important;
 }
 
@@ -66,6 +72,27 @@
     display: inline-block !important;
   }
 }
+
+
+@media (min-width: $screen-480-min) and (max-width: $screen-480-max) {
+  @include responsive-visibility('.visible-480');
+}
+.visible-480-block {
+  @media (min-width: $screen-480-min) and (max-width: $screen-480-max) {
+    display: block !important;
+  }
+}
+.visible-480-inline {
+  @media (min-width: $screen-480-min) and (max-width: $screen-480-max) {
+    display: inline !important;
+  }
+}
+.visible-480-inline-block {
+  @media (min-width: $screen-480-min) and (max-width: $screen-480-max) {
+    display: inline-block !important;
+  }
+}
+
 
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
   @include responsive-visibility('.visible-sm');
@@ -105,24 +132,45 @@
   }
 }
 
-@media (min-width: $screen-lg-min) {
+@media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
   @include responsive-visibility('.visible-lg');
 }
 .visible-lg-block {
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
     display: block !important;
   }
 }
 .visible-lg-inline {
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
     display: inline !important;
   }
 }
 .visible-lg-inline-block {
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
     display: inline-block !important;
   }
 }
+
+
+@media (min-width: $screen-1600-min) {
+  @include responsive-visibility('.visible-1600');
+}
+.visible-1600-block {
+  @media (min-width: $screen-1600-min) {
+    display: block !important;
+  }
+}
+.visible-1600-inline {
+  @media (min-width: $screen-1600-min) {
+    display: inline !important;
+  }
+}
+.visible-1600-inline-block {
+  @media (min-width: $screen-1600-min) {
+    display: inline-block !important;
+  }
+}
+
 
 @media (max-width: $screen-xs-max) {
   @include responsive-invisibility('.hidden-xs');
@@ -136,8 +184,12 @@
   @include responsive-invisibility('.hidden-md');
 }
 
-@media (min-width: $screen-lg-min) {
+@media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
   @include responsive-invisibility('.hidden-lg');
+}
+
+@media (min-width: $screen-1600-min) {
+  @include responsive-invisibility('.hidden-1600');
 }
 
 
