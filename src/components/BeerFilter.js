@@ -66,6 +66,8 @@ export default class BeerFilter extends Component {
                 </div>
             </div>
 
+
+
             <div className="beer-filter__items-per-page">
                 <div className="beer-filter__items-per-page-title-wrapper">
                     <div className="beer-filter__title">Показывать по</div>
@@ -80,6 +82,10 @@ export default class BeerFilter extends Component {
                     backspaceRemoves={false}
                     searchable={false}
                 />
+            </div>
+
+            <div className={'beer-filter__infinite-scroll' + (this.props.isInfiniteScroll ? ' beer-filter__infinite-scroll_active' : '')} onClick={this.props.toggleInfiniteScroll}>
+                <div className="beer-filter__infinite-scroll-button"></div>
             </div>
         </div>;
     }

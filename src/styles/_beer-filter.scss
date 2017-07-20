@@ -66,7 +66,29 @@
         }
     }
 
+    &__infinite-scroll {
+        float: right;
+        border: 1px solid $white;
+        padding: 7px 10px;
+        cursor: pointer;
+        transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        margin-top: 6px;
+
+        &:hover {
+            opacity: 0.75;
+        }
+
+        &_active {
+            background-color: $fruit-salad;
+        }
+
+        &-button {
+            @include sprite($infinity);
+        }
+    }
+
     &__items-per-page {
+        float: left;
         &-select {
             width: 80px;
 
@@ -128,6 +150,10 @@
                 width: 200px;
                 margin: 0 10px;
             }
+        }
+
+        &__infinite-scroll {
+            margin: 8px 10px 8px 0;
         }
 
         &__items-per-page {

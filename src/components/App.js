@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import rootReducer from './../reducers';
+import { stateSaver, getSavedState } from './../services/state-saver';
 import HomeContainer from './../containers/screens/HomeContainer';
 import BeerContainer from './../containers/screens/BeerContainer';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, getSavedState(), applyMiddleware(thunk, stateSaver));
 
 export default class App extends Component {
     render() {

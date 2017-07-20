@@ -43,12 +43,11 @@ export const requestFetchBeerWithDelay = (queryStr, mode) => {
  * Загрузить список пива, учитывая параметры из url
  * @param {string} queryStr Query string, из которой возьмётся параметры для загрузки списка пива
  * @param mode Очищать ли предыдущий список (PAGES_MODE_REPLACE) или добавлять в его конец (PAGES_MODE_APPEND)
- * @param {boolean} resetPage Сбрасывать ли номер страницы при загрузке
  */
-export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE, resetPage = true) => {
+export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => {
     return async (dispatch, getState) => {
         dispatch({type: FETCH_BEER_REQUEST});
-        if (resetPage) {
+        if (mode === PAGES_MODE_REPLACE) {
             dispatch(setPage(1));
         }
 

@@ -9,3 +9,5 @@ export const MIN_ABV = 0;
 export const MAX_ABV = 100;
 
 export const FILTER_DELAY = 1000;
+
+export const LOCALSTORAGE_STORE_KEY = 'saved-store';
