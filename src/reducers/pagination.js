@@ -1,8 +1,8 @@
-import { SET_PAGE, INCREMENT_PAGE, SET_PAGINATION_AVAILABILITY } from './../constants/actions';
+import { SET_PAGE, INCREMENT_PAGE, SET_NEXT_PAGE_AVAILABILITY } from './../constants/actions';
 
 const initialState = {
     page: 1,
-    isEnabled: true
+    isNextPageAvailable: true
 };
 
 export default (state = initialState, action) => {
@@ -12,8 +12,8 @@ export default (state = initialState, action) => {
             return {...state, page};
         case INCREMENT_PAGE:
             return {...state, page: state.page + 1};
-        case SET_PAGINATION_AVAILABILITY:
-            return {...state, isEnabled: action.payload};
+        case SET_NEXT_PAGE_AVAILABILITY:
+            return {...state, isNextPageAvailable: action.payload};
         default:
             return state;
     }

@@ -74,7 +74,7 @@
         text-align: center;
     }
 
-    .beer__error {
+    &__error {
         margin: 10px 5px;
     }
 
@@ -100,7 +100,7 @@
             padding: 10px;
         }
 
-        .beer__error {
+        &__error {
             margin: 20px;
         }
     }

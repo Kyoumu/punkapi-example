@@ -5,7 +5,8 @@
     max-width: $max-readable-text-width;
 
     &_center {
-        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     &_danger {

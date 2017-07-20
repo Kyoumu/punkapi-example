@@ -37,6 +37,6 @@ export default class Home extends Component {
                 <BeerPaginationContainer history={this.props.history}/>
             </div>
             <Footer/>
-        </div>
+        </div>;
     }
 }

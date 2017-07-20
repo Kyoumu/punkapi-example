@@ -5,7 +5,7 @@ import {
     FETCH_BEER_ITEM_REQUEST, FETCH_BEER_ITEM_SUCCESS, FETCH_BEER_ITEM_FAILURE
 } from './../constants/actions';
 import { PAGES_MODE_REPLACE, FILTER_DELAY } from './../constants';
-import { setPaginationAvailability } from './pagination';
+import { setNextPageAvailability } from './pagination';
 import Beer from './../domains/Beer';
 import { setPage } from './pagination';
 
@@ -77,7 +77,7 @@ export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => {
                 beerList[beer.id] = beer;
             });
 
-            dispatch(setPaginationAvailability(beerData.length === pageQueryParams.per_page));
+            dispatch(setNextPageAvailability(beerData.length === pageQueryParams.per_page));
             dispatch(successFetchBeer(beerList, mode));
         } catch (e) {
             dispatch(failureFetchBeer(e.message));
