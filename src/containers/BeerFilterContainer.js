@@ -6,7 +6,7 @@ import { toggleInfiniteScroll } from './../actions/options';
 import BeerFilter from './../components/BeerFilter';
 
 const mapStateToProps = (state, ownProps) => {
-    const queryParams = extractQueryParams(ownProps.history.location.search);
+    const queryParams = extractQueryParams(ownProps.location.search);
 
     return {
         ...ownProps,

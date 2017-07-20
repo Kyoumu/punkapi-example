@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --config webpack.config.js --watch",
     "build": "webpack --config webpack.config.js",
-    "wds": "webpack-dev-server",
+    "wds": "webpack-dev-server -d",
     "flow": "flow"
   },
   "repository": {},
@@ -42,6 +42,7 @@
   "dependencies": {
     "animejs": "^2.0.2",
     "babel-polyfill": "^6.23.0",
+    "lodash.chunk": "^4.2.0",
     "normalize.css": "^7.0.0",
     "query-string": "^4.3.4",
     "rc-slider": "^8.2.0",

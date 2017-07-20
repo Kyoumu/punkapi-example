@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class BeerPagination extends Component {
     goToNextPage = () => {
-        this.props.goToNextPage(this.props.history.location.search);
+        this.props.goToNextPage(this.props.location.search);
     };
 
     render() {

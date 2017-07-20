@@ -58,7 +58,7 @@ export const setQueryParams = (newQueryParams, history, options = {}) => {
 };
 
 /**
- * Извлекает параметры из query string (обычно это history.location.search из react-router)
+ * Извлекает параметры из query string (обычно это location.search из react-router)
  * @param {string} queryStr Query string
  * @param filter Фильтровать ли параметры
  * @returns {string} Объект с убранными пустыми параметрами

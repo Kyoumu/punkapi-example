@@ -94,7 +94,7 @@ module.exports = {
             }
         })
     ],
-    devServer: {
+    devServer: { //run webpack-dev-server with -d flag for source maps
         contentBase: path.join(__dirname, 'www'),
         compress: true,
         port: 9000,

@@ -76,7 +76,18 @@
     }
 
     &__error {
+        margin: 10px;
+    }
+
+    &__divider {
         margin: 10px 5px;
+        padding: 20px;
+        font-size: $default-font-size;
+        font-weight: bold;
+        text-align: center;
+        color: $chambray;
+        border-top: 1px solid $nepal;
+        border-bottom: 1px solid $nepal;
     }
 
     @media (min-width: $screen-480-min) {
@@ -103,6 +114,10 @@
 
         &__error {
             margin: 20px;
+        }
+
+        &__divider {
+            margin: 20px 10px;
         }
     }
 
