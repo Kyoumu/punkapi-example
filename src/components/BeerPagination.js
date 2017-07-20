@@ -10,8 +10,10 @@ export default class BeerPagination extends Component {
             return <div className="beer-pagination">
                 <div className="button button_info" onClick={this.goToNextPage}>Загрузить ещё</div>
             </div>;
+        } else if (this.props.isNoMoreResults) {
+            return <div className="beer-pagination__no-more-results">Были загружены все результаты</div>;
+        } else {
+            return null;
         }
-        
-        return null;
     }
 }

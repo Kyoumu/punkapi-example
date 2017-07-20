@@ -2,7 +2,25 @@
     padding: 10px 10px 20px;
     text-align: center;
 
+    &__no-more-results {
+        text-align: center;
+        padding: 10px 10px 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $fruit-salad;
+    }
+
+    @media (min-width: $screen-480-min) {
+        &__no-more-results {
+            font-size: 1.5em;
+        }
+    }
+
     @media (min-width: $screen-sm-min) {
         padding: 10px 20px 30px;
+
+        &__no-more-results {
+            padding: 10px 20px 30px;
+        }
     }
 }
