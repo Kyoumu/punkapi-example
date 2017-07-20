@@ -99,7 +99,6 @@ module.exports = {
         compress: true,
         port: 9000,
         publicPath: '/build/',
-        hot: true,
         historyApiFallback: true
     }
 };

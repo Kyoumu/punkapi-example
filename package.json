@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --config webpack.config.js --watch",
     "build": "webpack --config webpack.config.js",
-    "wds": "webpack-dev-server --hot -d",
+    "wds": "webpack-dev-server",
     "flow": "flow"
   },
   "repository": {},

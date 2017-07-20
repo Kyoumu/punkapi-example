@@ -7,12 +7,25 @@ import Footer from './../Footer';
 export default class Home extends Component {
     componentWillMount() {
         this.props.initializeBeerList(this.props.history.location.search);
-        this.props.setInfiniteScrollAvailability(this.props.isInfiniteScroll, this.props.history.location.search);
+
+        if (this.props.isInfiniteScroll) {
+            this.infiniteScrollEvent = this.props.enableInfiniteScroll(this.props.history.location.search);
+        }
     }
 
     componentWillUpdate(props) {
         if (props.isInfiniteScroll !== this.props.isInfiniteScroll) {
-            this.props.setInfiniteScrollAvailability(props.isInfiniteScroll, props.history.location.search);
+            this.props.disableInfiniteScroll(this.infiniteScrollEvent);
+
+            if (props.isInfiniteScroll) {
+                this.infiniteScrollEvent = this.props.enableInfiniteScroll(props.history.location.search);
+            }
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.infiniteScrollEvent) {
+            this.props.disableInfiniteScroll(this.infiniteScrollEvent);
         }
     }
 

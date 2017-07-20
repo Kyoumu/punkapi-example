@@ -84,7 +84,11 @@ export default class BeerFilter extends Component {
                 />
             </div>
 
-            <div className={'beer-filter__infinite-scroll' + (this.props.isInfiniteScroll ? ' beer-filter__infinite-scroll_active' : '')} onClick={this.props.toggleInfiniteScroll}>
+            <div
+                className={'beer-filter__infinite-scroll' + (this.props.isInfiniteScroll ? ' beer-filter__infinite-scroll_active' : '')}
+                title="Infinite scroll"
+                onClick={this.props.toggleInfiniteScroll}
+            >
                 <div className="beer-filter__infinite-scroll-button"></div>
             </div>
         </div>;

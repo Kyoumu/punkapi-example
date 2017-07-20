@@ -114,7 +114,7 @@ export const requestFetchBeerItem = (id) => {
         dispatch({type: FETCH_BEER_ITEM_REQUEST, payload: id});
 
         try {
-            const response = await fetch('https://api.punkaspi.com/v2/beers/' + id);
+            const response = await fetch('https://api.punkapi.com/v2/beers/' + id);
             const beerData = await response.json();
 
             if (beerData.error) {

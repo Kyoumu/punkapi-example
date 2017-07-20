@@ -12,17 +12,19 @@ const mapDispatchToProps = (dispatch) => ({
     initializeBeerList: (queryStr) => {
         dispatch(initializeBeerList(queryStr));
     },
-    setInfiniteScrollAvailability: (isEnabled, queryStr) => {
-        if (isEnabled) {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset === (document.documentElement.scrollHeight - document.documentElement.clientHeight)) {
-                    console.log('infiniteScroll', queryStr);
+    enableInfiniteScroll: (queryStr) => {
+        const event = () => {
+            if (window.pageYOffset === (document.documentElement.scrollHeight - document.documentElement.clientHeight)) {
+                dispatch(goToNextPage(queryStr));
+            }
+        };
+        window.addEventListener('scroll', event);
 
-                    dispatch(goToNextPage(queryStr));
-                }
-            });
-        } else {
-            // window.removeEventListener('scroll');
+        return event;
+    },
+    disableInfiniteScroll: (event) => {
+        if (event) {
+            window.removeEventListener('scroll', event);
         }
     }
 });
