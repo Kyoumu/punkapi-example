@@ -48,6 +48,7 @@ export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => {
     return async (dispatch, getState) => {
         dispatch({type: FETCH_BEER_REQUEST});
         if (mode === PAGES_MODE_REPLACE) {
+            window.scrollTo(0, 0);
             dispatch(setPage(1));
         }
 
