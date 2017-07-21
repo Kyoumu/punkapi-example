@@ -3,6 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { PROD_BASE_PATH, DEV_BASE_PATH } from './constants';
 import rootReducer from './reducers';
 import { stateSaver, getSavedState } from './services/state-saver';
 import HomeContainer from './containers/screens/HomeContainer';
@@ -13,11 +14,13 @@ const store = createStore(rootReducer, getSavedState(), applyMiddleware(thunk, s
 
 export default class App extends Component {
     render() {
+        const basename = (process.env.NODE_ENV === 'production') ? PROD_BASE_PATH : DEV_BASE_PATH;
+
         return <Provider store={store}>
-            <BrowserRouter>
+            <BrowserRouter basename={basename}>
                 <div className="routers-wrapper">
                     <Switch>
-                        <Route exact path="/" render={() => <Redirect to="/beer"/>}/>
+                        <Redirect exact from="/" to="/beer"/>
                         <Route exact path="/beer" component={HomeContainer}/>
                         <Route path="/beer/:id" component={BeerContainer}/>
                         <Route component={NotFound}/>

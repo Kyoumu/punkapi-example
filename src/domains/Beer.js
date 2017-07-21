@@ -27,9 +27,9 @@ export default class Beer {
     brewers_tips: string;
     contributed_by: string;
 
-    constructor(params) {
-        for (let name in params) {
-            this[name] = params[name];
+    constructor(params: any) {
+        for (let name: string in params) {
+            (this: Object)[name] = params[name];
         }
     }
 

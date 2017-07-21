@@ -1,19 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const Visualizer = require('webpack-visualizer-plugin');
 const autoprefixer = require('autoprefixer');
 const SpritesmithPlugin = require('webpack-spritesmith');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+import { PROD_BASE_PATH } from './src/constants';
 
 module.exports = {
     entry: {
-        build: ['babel-polyfill', 'whatwg-fetch', './src/main']
+        './build/build': ['babel-polyfill', 'whatwg-fetch', './src/main.js']
     },
     output: {
-        path: path.resolve(__dirname, './www/build'),
+        path: path.resolve(__dirname, 'docs'),
         filename: '[name].js',
-        publicPath: '/build/'
+        publicPath: PROD_BASE_PATH
     },
     module: {
         rules: [
@@ -46,7 +47,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['env', {'targets': {'browsers': ['last 5 versions', 'ie >= 8']}}],
+                            ['env', {'targets': {'browsers': ['last 5 versions', 'ie >= 9']}}],
                             'react',
                             'flow'
                         ],
@@ -57,48 +58,49 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: {
-                    loader: 'file-loader'
+                    loader: 'file-loader',
+                    options: {
+                        name: 'build/[hash].[ext]'
+                    }
                 }
             },
         ]
     },
     resolve: {
         alias: {
-            'sprite.png': path.resolve(__dirname, './src/images/sprite.png')
+            'sprite.png': path.resolve(__dirname, 'src/images/sprite.png')
         }
     },
     plugins: [
-        // new Visualizer(),
-        new CleanWebpackPlugin(['./www/assets/build']),
-        new ExtractTextPlugin('build.css'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new CleanWebpackPlugin(['docs']),
+        new ExtractTextPlugin('build/build.css'),
         new webpack.optimize.UglifyJsPlugin(),
         new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(__dirname, './src/images/sprite'),
+                cwd: path.resolve(__dirname, 'src/images/sprite'),
                 glob: '*.png'
             },
             target: {
-                image: path.resolve(__dirname, './src/images/sprite.png'),
-                css: path.resolve(__dirname, './src/styles/_sprite.scss')
+                image: path.resolve(__dirname, 'src/images/sprite.png'),
+                css: path.resolve(__dirname, 'src/styles/_sprite.scss')
             },
             apiOptions: {
                 cssImageRef: "~sprite.png"
             }
         }),
-        new webpack.SourceMapDevToolPlugin({
-            filename: '[name].js.map'
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('dev')
+        new HtmlWebpackPlugin({
+            filename: '404.html',
+            template: 'src/index.ejs',
+            inject: false,
+            data: {
+                css: (PROD_BASE_PATH + 'build/build.css'),
+                js: (PROD_BASE_PATH + 'build/build.js')
             }
         })
-    ],
-    devServer: { //run webpack-dev-server with -d flag for source maps
-        contentBase: path.join(__dirname, 'www'),
-        compress: true,
-        port: 9000,
-        publicPath: '/build/',
-        historyApiFallback: true
-    }
+    ]
 };

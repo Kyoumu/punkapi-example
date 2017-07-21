@@ -1,3 +1,6 @@
+export const PROD_BASE_PATH = '/punkapi-example/';
+export const DEV_BASE_PATH = '/';
+
 export const MAX_ITEMS_PER_PAGE = 80;
 export const MIN_ITEMS_PER_PAGE = 1;
 export const DEFAULT_ITEMS_PER_PAGE = 12;
