@@ -1,13 +1,13 @@
 import 'whatwg-fetch';
-import { extractQueryParams, buildQueryString } from './../services/query-params';
+import { extractQueryParams } from './../services/query-params';
 import {
     FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, SET_FETCH_BEER_TIMER, CLEAR_FETCH_BEER_TIMER, BEER_LIST_INITIALIZE,
     FETCH_BEER_ITEM_REQUEST, FETCH_BEER_ITEM_SUCCESS, FETCH_BEER_ITEM_FAILURE
 } from './../constants/actions';
 import { PAGES_MODE_REPLACE, FILTER_DELAY } from './../constants';
 import { setNextPageAvailability } from './pagination';
-import Beer from './../domains/Beer';
 import { setPage } from './pagination';
+import { getAll, getOneByID } from './../services/punk-api';
 
 /**
  * Инициализация списка с пивом в первый раз при заходе на страницу Home
@@ -56,29 +56,15 @@ export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => {
 
         try {
             const pageQueryParams = extractQueryParams(queryStr || '');
-            const queryParams = {
+            const beerList = await getAll({
                 page: state.pagination.page,
                 per_page: pageQueryParams.per_page,
                 abv_gt: pageQueryParams.abv_gt,
                 abv_lt: pageQueryParams.abv_lt,
                 beer_name: pageQueryParams.beer_name.trim().replace(/ /g, '_')
-            };
-            const url = 'https://api.punkapi.com/v2/beers?' + buildQueryString(queryParams);
-
-            const response = await fetch(url);
-            const beerData = await response.json();
-
-            if (beerData.error) {
-                throw new Error(beerData.message);
-            }
-
-            let beerList = {};
-            beerData.forEach(beerItemData => {
-                const beer = new Beer(beerItemData);
-                beerList[beer.id] = beer;
             });
 
-            dispatch(setNextPageAvailability(beerData.length === pageQueryParams.per_page));
+            dispatch(setNextPageAvailability(Object.values(beerList).length === pageQueryParams.per_page));
             dispatch(successFetchBeer(beerList, mode));
         } catch (e) {
             dispatch(failureFetchBeer(e.message));
@@ -115,14 +101,7 @@ export const requestFetchBeerItem = (id) => {
         dispatch({type: FETCH_BEER_ITEM_REQUEST, payload: id});
 
         try {
-            const response = await fetch('https://api.punkapi.com/v2/beers/' + id);
-            const beerData = await response.json();
-
-            if (beerData.error) {
-                throw new Error(beerData.message);
-            }
-
-            const beer = new Beer(beerData[0]);
+            const beer = await getOneByID(id);
             dispatch(successFetchBeerItem(beer));
         } catch (e) {
             dispatch(failureFetchBeerItem(id, e.message));
