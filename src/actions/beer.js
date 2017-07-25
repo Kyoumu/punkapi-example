@@ -1,81 +1,34 @@
 import 'whatwg-fetch';
-import { extractQueryParams } from './../services/query-params';
 import {
-    FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, SET_FETCH_BEER_TIMER, CLEAR_FETCH_BEER_TIMER, BEER_LIST_INITIALIZE,
+    FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, BEER_LIST_INITIALIZE_REQUEST, FETCH_BEER_WITH_DELAY_REQUEST,
     FETCH_BEER_ITEM_REQUEST, FETCH_BEER_ITEM_SUCCESS, FETCH_BEER_ITEM_FAILURE
 } from './../constants/actions';
-import { PAGES_MODE_REPLACE, FILTER_DELAY } from './../constants';
-import { setNextPageAvailability } from './pagination';
-import { setPage } from './pagination';
-import { getAll, getOneByID } from './../services/punk-api';
+import { PAGES_MODE_REPLACE } from './../constants';
 
 /**
  * Инициализация списка с пивом в первый раз при заходе на страницу Home
- * @param queryStr (см. requestFetchBeer)
- * @param mode (см. requestFetchBeer)
+ * @param {string} queryStr (см. requestFetchBeer)
  */
-export const initializeBeerList = (queryStr, mode) => {
-    return (dispatch, getState) => {
-        if (!getState().beer.isListInitialized) {
-            dispatch({type: BEER_LIST_INITIALIZE});
-            dispatch(requestFetchBeer(queryStr, mode));
-        }
-    };
-};
+export const initializeBeerList = (queryStr) => ({type: BEER_LIST_INITIALIZE_REQUEST, payload: queryStr});
 
 /**
  * Загрузить список пива, учитывая параметры из url с задержкой
- * @param queryStr (см. requestFetchBeer)
- * @param mode (см. requestFetchBeer)
+ * @param {string} queryStr (см. requestFetchBeer)
+ * @param {string} mode (см. requestFetchBeer)
  */
-export const requestFetchBeerWithDelay = (queryStr, mode) => {
-    return (dispatch) => {
-        const timerID = setTimeout(() => {
-            dispatch(clearFetchBeerTimer());
-            dispatch(requestFetchBeer(queryStr, mode));
-        }, FILTER_DELAY);
-
-        dispatch({type: SET_FETCH_BEER_TIMER, payload: timerID});
-    };
-};
+export const requestFetchBeerWithDelay = (queryStr, mode) => ({type: FETCH_BEER_WITH_DELAY_REQUEST, payload: {queryStr, mode}});
 
 /**
  * Загрузить список пива, учитывая параметры из url
  * @param {string} queryStr Query string, из которой возьмётся параметры для загрузки списка пива
- * @param mode Очищать ли предыдущий список (PAGES_MODE_REPLACE) или добавлять в его конец (PAGES_MODE_APPEND)
+ * @param {string} mode Очищать ли предыдущий список (PAGES_MODE_REPLACE) или добавлять в его конец (PAGES_MODE_APPEND)
  */
-export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => {
-    return async (dispatch, getState) => {
-        dispatch({type: FETCH_BEER_REQUEST});
-        if (mode === PAGES_MODE_REPLACE) {
-            window.scrollTo(0, 0);
-            dispatch(setPage(1));
-        }
-
-        const state = getState();
-
-        try {
-            const pageQueryParams = extractQueryParams(queryStr || '');
-            const beerList = await getAll({
-                page: state.pagination.page,
-                per_page: pageQueryParams.per_page,
-                abv_gt: pageQueryParams.abv_gt,
-                abv_lt: pageQueryParams.abv_lt,
-                beer_name: pageQueryParams.beer_name.trim().replace(/ /g, '_')
-            });
-
-            dispatch(setNextPageAvailability(Object.values(beerList).length === pageQueryParams.per_page));
-            dispatch(successFetchBeer(beerList, mode));
-        } catch (e) {
-            dispatch(failureFetchBeer(e.message));
-        }
-    };
-};
+export const requestFetchBeer = (queryStr, mode = PAGES_MODE_REPLACE) => ({type: FETCH_BEER_REQUEST, payload: {queryStr, mode}});
 
 /**
  * Вызывается после успешной загрузки списка пива
- * @param list Список пива
- * @param mode Режим (см. requestFetchBeer)
+ * @param {Array<Beer>} list Список пива
+ * @param {string} mode Режим (см. requestFetchBeer)
  */
 export const successFetchBeer = (list, mode = PAGES_MODE_REPLACE) => ({type: FETCH_BEER_SUCCESS, payload: {list, mode}});
 
@@ -83,41 +36,25 @@ export const successFetchBeer = (list, mode = PAGES_MODE_REPLACE) => ({type: FET
  * Вызывается после неудачной загрузки списка пива
  * @param {string} error Сообщение об ошибке
  */
-export const failureFetchBeer = (error) => ({type: FETCH_BEER_FAILURE, error});
+export const failureFetchBeer = (error) => ({type: FETCH_BEER_FAILURE, payload: error});
 
-
-/**
- * Выполняется когда нужно очистить таймер задержки загрузки списка пива (см. requestFetchBeerWithDelay)
- */
-export const clearFetchBeerTimer = () => ({type: CLEAR_FETCH_BEER_TIMER});
 
 
 /**
  * Загрузка информации о пиве по его ИД
- * @param id ИД пива
+ * @param {number} id ИД пива
  */
-export const requestFetchBeerItem = (id) => {
-    return async (dispatch) => {
-        dispatch({type: FETCH_BEER_ITEM_REQUEST, payload: id});
-
-        try {
-            const beer = await getOneByID(id);
-            dispatch(successFetchBeerItem(beer));
-        } catch (e) {
-            dispatch(failureFetchBeerItem(id, e.message));
-        }
-    };
-};
+export const requestFetchBeerItem = (id) => ({type: FETCH_BEER_ITEM_REQUEST, payload: id});
 
 /**
  * Вызывается после успешной загрузки одного пива
- * @param beer Одно пиво
+ * @param {Beer} beer Одно пиво
  */
 export const successFetchBeerItem = (beer) => ({type: FETCH_BEER_ITEM_SUCCESS, payload: beer});
 
 /**
  * Вызывается после неудачной загрузки одного пива
- * @param id ИД пива
+ * @param {number} id ИД пива
  * @param {string} error Сообщение об ошибке
  */
-export const failureFetchBeerItem = (id, error) => ({type: FETCH_BEER_ITEM_FAILURE, error, payload: id});
+export const failureFetchBeerItem = (id, error) => ({type: FETCH_BEER_ITEM_FAILURE, payload: {id, error}});

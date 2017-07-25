@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.babel.js",
-    "prod": "webpack --config webpack.config.production.babel.js",
+    "prod": "webpack -p --config webpack.config.production.babel.js",
     "wds": "webpack-dev-server -d",
     "flow": "flow"
   },
@@ -53,7 +53,7 @@
     "react-router-dom": "^4.1.2",
     "react-select": "^1.0.0-rc.5",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
+    "redux-saga": "^0.15.5",
     "whatwg-fetch": "^2.0.3"
   }
 }

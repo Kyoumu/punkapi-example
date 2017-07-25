@@ -7,7 +7,8 @@ import isContentFitInScreen from './../services/is-content-fit-in-screen';
 const mapStateToProps = (state, ownProps) => ({
     ...ownProps,
     isEnabled: (state.pagination.isNextPageAvailable && !state.beer.listError && (!state.options.isInfiniteScroll || isContentFitInScreen())),
-    isNoMoreResults: (!state.pagination.isNextPageAvailable && state.pagination.page > 1)
+    isNoMoreResults: (!state.pagination.isNextPageAvailable && state.pagination.page > 1),
+    isListInitialized: state.beer.isListInitialized
 });
 
 const mapDispatchToProps = (dispatch) => ({

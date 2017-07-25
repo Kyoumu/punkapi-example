@@ -3,8 +3,8 @@ import Beer from './../domains/Beer';
 
 /**
  * Возвращает список пива
- * @param params Объект с параметрами
- * @throws Error При ошибке получения данных
+ * @param {Object} params Объект с параметрами
+ * @throws {Error} При ошибке получения данных
  * @returns {Promise<Array>}
  */
 export const getAll = async (params) => {
@@ -27,8 +27,8 @@ export const getAll = async (params) => {
 
 /**
  * Возвращает пиво по его ID
- * @param id ID пива
- * @throws Error При ошибке получения данных
+ * @param {number} id ID пива
+ * @throws {Error} При ошибке получения данных
  * @returns {Promise<Object>}
  */
 export const getOneByID = async (id) => {

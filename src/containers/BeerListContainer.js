@@ -5,7 +5,8 @@ const mapStateToProps = (state, ownProps) => ({
     ...ownProps,
     isLoading: state.beer.isLoadingList,
     beerList: state.beer.currentList,
-    error: state.beer.listError
+    error: state.beer.listError,
+    isListInitialized: state.beer.isListInitialized
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,7 +6,7 @@ export default class BeerPagination extends Component {
     };
 
     render() {
-        if (this.props.isEnabled) {
+        if (this.props.isEnabled && this.props.isListInitialized) {
             return <div className="beer-pagination">
                 <div className="button button_info" onClick={this.goToNextPage}>Загрузить ещё</div>
             </div>;
