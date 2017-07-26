@@ -2,7 +2,7 @@
   "name": "beerapi",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "webpack.config.babel.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.babel.js",
@@ -36,8 +36,8 @@
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^3.2.0",
-    "webpack-dev-server": "^2.5.1",
+    "webpack": "^3.4.0",
+    "webpack-dev-server": "^2.6.1",
     "webpack-spritesmith": "^0.3.3",
     "webpack-visualizer-plugin": "^0.1.11"
   },
@@ -53,7 +53,7 @@
     "react-router-dom": "^4.1.2",
     "react-select": "^1.0.0-rc.5",
     "redux": "^3.7.2",
-    "redux-saga": "^0.15.5",
+    "redux-saga": "^0.15.6",
     "whatwg-fetch": "^2.0.3"
   }
 }
