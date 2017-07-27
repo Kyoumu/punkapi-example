@@ -3,8 +3,8 @@ import beer from './beer';
 import pagination from './pagination';
 
 export default function* () {
-    yield all([
+    yield [
         fork(beer),
         fork(pagination)
-    ])
+    ];
 }

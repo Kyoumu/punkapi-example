@@ -7,11 +7,14 @@ import Beer from './../domains/Beer';
  * @throws {Error} При ошибке получения данных
  * @returns {Promise<Array>}
  */
-export const getAll = async (params) => {
-    const url = 'https://api.punkapi.com/v2/beers?' + buildQueryString(params);
-
-    const response = await fetch(url);
-    const beerData =  await response.json();
+export const getAll = async (params = {}) => {
+    let beerData;
+    try {
+        const response = await fetch('https://api.punkapi.com/v2/beers?' + buildQueryString(params));
+        beerData = await response.json();
+    } catch (e) {
+        beerData = {error: true, message: '404'};
+    }
 
     if (beerData.error) {
         throw new Error(beerData.message);
@@ -32,8 +35,13 @@ export const getAll = async (params) => {
  * @returns {Promise<Object>}
  */
 export const getOneByID = async (id) => {
-    const response = await fetch('https://api.punkapi.com/v2/beers/' + id);
-    const beerData = await response.json();
+    let beerData;
+    try {
+        const response = await fetch('https://api.punkapi.com/v2/beers/' + id);
+        beerData = await response.json();
+    } catch (e) {
+        beerData = {error: true, message: '404'};
+    }
 
     if (beerData.error) {
         throw new Error(beerData.message);

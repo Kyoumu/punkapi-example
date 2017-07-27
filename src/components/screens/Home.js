@@ -6,7 +6,7 @@ import Footer from './../Footer';
 
 export default class Home extends Component {
     componentWillMount() {
-        this.props.initializeBeerList(this.props.location.search);
+        this.props.requestInitializeBeerList(this.props.location.search);
 
         if (this.props.isInfiniteScroll) {
             this.infiniteScrollEvent = this.props.enableInfiniteScroll(this.props.location.search);

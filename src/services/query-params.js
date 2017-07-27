@@ -6,7 +6,7 @@ import { DEFAULT_ITEMS_PER_PAGE, MIN_ABV, MAX_ABV, MIN_ITEMS_PER_PAGE, MAX_ITEMS
  * @param {Object} params Объект с параметрами
  * @returns {Object} Объект с убранными пустыми параметрами
  */
-const removeEmptyParams = (params) => {
+export const removeEmptyParams = (params) => {
     let newParams = {...params};
     let emptyKeys = [];
 
@@ -57,25 +57,36 @@ export const setQueryParams = (newQueryParams, history, options = {}) => {
 };
 
 /**
+ * Параметры из query string по-умолчанию
+ */
+export const defaultQueryParamsOnExtract = {
+    per_page: DEFAULT_ITEMS_PER_PAGE,
+    abv_gt: MIN_ABV,
+    abv_lt: MAX_ABV
+};
+
+/**
  * Извлекает параметры из query string (обычно это location.search из react-router)
  * @param {string} queryStr Query string
  * @param {boolean} filter Фильтровать ли параметры
- * @returns {string} Объект с убранными пустыми параметрами
+ * @param {bool} removeEmpty Убирать ли пустые параметры
+ * @returns {string} Query string в виде объекта
  */
-export const extractQueryParams = (queryStr, filter = true) => {
-    const defaultQueryParams = {
-        per_page: DEFAULT_ITEMS_PER_PAGE,
-        abv_gt: MIN_ABV,
-        abv_lt: MAX_ABV,
-        beer_name: ''
-    };
+export const extractQueryParams = (queryStr, filter = true, removeEmpty = true) => {
+    if (queryStr.includes('#')) {
+        queryStr = queryStr.split('#')[0];
+    }
 
-    let queryParams = {...defaultQueryParams, ...queryString.parse(queryStr || '')};
+    let queryParams = {...defaultQueryParamsOnExtract, ...queryString.parse(queryStr || '')};
 
     if (filter) {
         for (let key in queryParams) {
             queryParams[key] = filterQueryParam(key, queryParams[key], queryParams);
         }
+    }
+
+    if (removeEmpty) {
+        queryParams = removeEmptyParams(queryParams);
     }
 
     return queryParams;

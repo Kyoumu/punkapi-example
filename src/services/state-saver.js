@@ -5,7 +5,7 @@ import { LOCALSTORAGE_STORE_KEY } from './../constants'
  * @param {Object} state Данные store из Redux
  * @returns {Object} Данные для сохранения
  */
-const getStateDataToSave = (state) => {
+export const getStateDataToSave = (state) => {
     return {
         options: state.options
     };

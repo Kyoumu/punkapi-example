@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Home from './../../components/screens/Home';
-import { initializeBeerList } from './../../actions/beer';
+import { requestInitializeBeerList } from './../../actions/beer';
 import { goToNextPage } from './../../actions/pagination';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,8 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    initializeBeerList: (queryStr) => {
-        dispatch(initializeBeerList(queryStr));
+    requestInitializeBeerList: (queryStr) => {
+        dispatch(requestInitializeBeerList(queryStr));
     },
     enableInfiniteScroll: (queryStr) => {
         const event = () => {
