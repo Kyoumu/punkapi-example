@@ -10,7 +10,7 @@ import { getAll, getOneByID } from './../services/punk-api';
 export const initializeBeerList = function* (action) {
     const state = yield select();
 
-    if (!state.beer.isListInitialized) {
+    if (!state.beer.isListInitialized && !state.beer.isLoadingList) {
         yield* requestFetchBeerList(requestFetchBeerListAction(action.payload));
         yield put(successInitializeBeerList());
     }

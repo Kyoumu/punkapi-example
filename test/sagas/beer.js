@@ -21,7 +21,7 @@ describe('initializeBeerList saga', function () {
 
     it('should load list when list is not initialized', function () {
         const state = {
-            beer: {isListInitialized: false},
+            beer: {isListInitialized: false, isLoadingList: false},
             pagination: {page: 1}
         };
         const pageQueryParams = extractQueryParams('');
@@ -47,6 +47,17 @@ describe('initializeBeerList saga', function () {
     it('should not work when list is initialized', function () {
         const state = {
             beer: {isListInitialized: true}
+        };
+        const action = requestInitializeBeerList('');
+        const generator = initializeBeerList(action);
+
+        assert.deepEqual(generator.next().value, select());
+        assert.isOk(generator.next(state).done);
+    });
+
+    it('should not work when list is loading', function () {
+        const state = {
+            beer: {isLoadingList: true}
         };
         const action = requestInitializeBeerList('');
         const generator = initializeBeerList(action);

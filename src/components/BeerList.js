@@ -18,14 +18,14 @@ export default class BeerList extends Component {
             beerChunks[i].forEach((beer) => beerList.push(<BeerListItem key={beer.id} beer={beer} onClick={this.onBeerClick}/>));
 
             if (i < length - 1) {
-                beerList.push(<div key={'divider-' + i} className="beer__divider">Страница {i + 2}</div>);
+                beerList.push(<div key={'divider-' + i} className="beer__divider">Page {i + 2}</div>);
             }
         }
 
         return <div className="beer">
             {this.props.isLoading && <Loader/>}
             {this.props.error && <div className="beer__error"><div className="alert alert_danger alert_center">{this.props.error}</div></div>}
-            {(beerList.length === 0 && !this.props.error && this.props.isListInitialized) && <div className="beer__empty">Результаты по данному запросу отсутствуют.</div>}
+            {(beerList.length === 0 && !this.props.error && this.props.isListInitialized) && <div className="beer__empty">There are no results</div>}
 
             <div className="beer__items">{beerList}</div>
         </div>;

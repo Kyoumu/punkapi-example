@@ -1,5 +1,5 @@
 import {
-    FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, BEER_LIST_INITIALIZE_REQUEST, BEER_LIST_INITIALIZE_SUCCESS,
+    FETCH_BEER_REQUEST, FETCH_BEER_SUCCESS, FETCH_BEER_FAILURE, BEER_LIST_INITIALIZE_SUCCESS,
     FETCH_BEER_ITEM_REQUEST, FETCH_BEER_ITEM_SUCCESS, FETCH_BEER_ITEM_FAILURE
 } from './../constants/actions';
 import { PAGES_MODE_REPLACE } from './../constants';
@@ -16,8 +16,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case BEER_LIST_INITIALIZE_REQUEST:
-            return {...state, isLoadingList: true};
         case BEER_LIST_INITIALIZE_SUCCESS:
             return {...state, isListInitialized: true};
         case FETCH_BEER_REQUEST:

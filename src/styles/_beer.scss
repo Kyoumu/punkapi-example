@@ -32,18 +32,18 @@
 
         &:hover {
             border-color: $chambray;
-            .beer__image {
+            .beer__image-wrapper {
                 transform: rotate(30deg);
             }
         }
     }
 
     &__image-wrapper {
+        transition: transform 0.2s ease-in-out;
         height: 150px;
     }
 
     &__image {
-        transition: transform 0.2s ease-in-out;
         margin: 0 auto;
         max-height: 100%;
     }
